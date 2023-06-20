@@ -82,6 +82,12 @@ public:
     {
         while (true)
         {
+            // system("clear");
+            // using namespace std::this_thread; // sleep_for, sleep_until
+            //  using namespace std::chrono; // nanoseconds, system_clock, seconds
+
+            // sleep_for(nanoseconds(100000));
+            // sleep_until(system_clock::now() + seconds(1));
             cout << "Philosopher " << id_ << " is thinking" << endl;
             std::this_thread::sleep_for(std::chrono::seconds(1));
 
