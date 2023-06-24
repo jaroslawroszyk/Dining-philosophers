@@ -6,14 +6,13 @@ set(HEADERS
     include/Chopstick.hpp
     include/Philosopher.hpp
     include/Utils.hpp
-    include/Semaphore.hpp
-        )
+    include/Semaphore.hpp)
 
 set(SOURCES
     src/Chopstick.cpp
     src/Utils.cpp
     src/Philosopher.cpp
-    )
+    src/Semaphore.cpp)
 
 set(FLAGS)
 #  -Wall -Wextra -Wpedantic)
