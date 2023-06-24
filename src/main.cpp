@@ -8,23 +8,22 @@
 int main()
 {
     std::vector<Philosopher> philosophers;
-    DiningPhilosophers::Semaphore waiter(Utils::NUM_PHILOSOPHERS - 1);
+    DiningPhilosophers::Semaphore waiter(Utils::NUM_OF_PHILOSOPHERS - 1);
 
-    std::vector<DiningPhilosophers::Chopstick> chopsticks(Utils::NUM_PHILOSOPHERS);
-    for (int i = 0; i < Utils::NUM_PHILOSOPHERS; i++)
+    std::vector<DiningPhilosophers::Chopstick> chopsticks(Utils::NUM_OF_PHILOSOPHERS);
+    for (int i = 0; i < Utils::NUM_OF_PHILOSOPHERS; i++)
     {
-        philosophers.emplace_back(i, &chopsticks[i], &chopsticks[(i + 1) % Utils::NUM_PHILOSOPHERS], &waiter);
+        philosophers.emplace_back(i, &chopsticks[i], &chopsticks[(i + 1) % Utils::NUM_OF_PHILOSOPHERS], &waiter);
     }
 
     std::vector<std::thread> threads;
-    for (int i = 0; i < Utils::NUM_PHILOSOPHERS; i++)
+    for (int i = 0; i < Utils::NUM_OF_PHILOSOPHERS; i++)
     {
         threads.emplace_back(&Philosopher::dine, &philosophers[i]);
     }
 
     while (true)
     {
-        // system("clear");
         Utils::clearScreen();
         Utils::printTable(philosophers);
         std::this_thread::sleep_for(std::chrono::seconds(1));

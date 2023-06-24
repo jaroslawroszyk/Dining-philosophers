@@ -4,9 +4,7 @@
 #include <iostream>
 #include <thread>
 
-using namespace DiningPhilosophers;
-
-Philosopher::Philosopher(int id, Chopstick* left_chopstick, Chopstick* right_chopstick, Semaphore* waiter, int eatingCount)
+Philosopher::Philosopher(int id, DiningPhilosophers::Chopstick* left_chopstick, DiningPhilosophers::Chopstick* right_chopstick, DiningPhilosophers::Semaphore* waiter, int eatingCount)
     : id(id), leftChopstick(left_chopstick), rightChopstick(right_chopstick), waiter(waiter), status("Thinking"), eatingCount(eatingCount)
 {
 }
@@ -44,7 +42,7 @@ void Philosopher::dine()
 int Philosopher::getId() const { return id; }
 const std::string& Philosopher::getStatus() const { return status; }
 int Philosopher::getEatingCount() const { return eatingCount; }
-Chopstick* Philosopher::getLeftChopstick() const { return leftChopstick; }
-Chopstick* Philosopher::getRightChopstick() const { return rightChopstick; }
+DiningPhilosophers::Chopstick* Philosopher::getLeftChopstick() const { return leftChopstick; }
+DiningPhilosophers::Chopstick* Philosopher::getRightChopstick() const { return rightChopstick; }
 
 

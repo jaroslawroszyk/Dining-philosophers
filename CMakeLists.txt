@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.20..3.26.3)
 project(DinningPhilosophers)
+
 set(CMAKE_CXX_STANDARD 20)
 
 set(HEADERS
@@ -14,8 +15,7 @@ set(SOURCES
     src/Philosopher.cpp
     src/Semaphore.cpp)
 
-set(FLAGS)
-#  -Wall -Wextra -Wpedantic)
+set(FLAGS -Wall -Wextra -Wpedantic)
 
 add_executable(${PROJECT_NAME} ${SOURCES} src/main.cpp)
 target_compile_options(${PROJECT_NAME} PUBLIC ${FLAGS})

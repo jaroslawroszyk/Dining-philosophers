@@ -3,14 +3,9 @@
 #include <vector>
 #include <filesystem>
 
-namespace DiningPhilosophers
-{
-    class Philosopher;
-    // class Chopstick;
-} // 
 namespace Utils
 {
-    constexpr int NUM_PHILOSOPHERS = 5;
+    constexpr int NUM_OF_PHILOSOPHERS = 5;
 
     void clearScreen();
     void printTable(const std::vector<Philosopher>&);

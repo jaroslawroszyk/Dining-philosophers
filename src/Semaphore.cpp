@@ -2,18 +2,16 @@
 #include <mutex>
 #include <condition_variable>
 
-using namespace DiningPhilosophers;
+DiningPhilosophers::Semaphore::Semaphore(int count) : count_(count) {}
 
-Semaphore::Semaphore(int count) : count_(count) {}
-
-void Semaphore::notify()
+void DiningPhilosophers::Semaphore::notify()
 {
     std::unique_lock<std::mutex> lock(mutex_);
     count_++;
     cv_.notify_one();
 }
 
-void Semaphore::wait()
+void DiningPhilosophers::Semaphore::wait()
 {
     std::unique_lock<std::mutex> lock(mutex_);
     while (count_ == 0)
