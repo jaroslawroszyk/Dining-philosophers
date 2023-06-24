@@ -4,6 +4,7 @@
 #include <chrono>
 #include <vector>
 #include <memory>
+#include <condition_variable>
 
 using namespace std;
 
@@ -64,8 +65,10 @@ private:
 class Philosopher
 {
 public:
-    Philosopher(int id, Chopstick* left_chopstick, Chopstick* right_chopstick, Semaphore* waiter)
-        : id_(id), left_chopstick_(left_chopstick), right_chopstick_(right_chopstick), waiter_(waiter), status_("Thinking") {}
+    Philosopher(int id, Chopstick* left_chopstick, Chopstick* right_chopstick, Semaphore* waiter, int eatingCount = 0)
+        : id_(id), left_chopstick_(left_chopstick), right_chopstick_(right_chopstick), waiter_(waiter), status_("Thinking"), eatingCount(eatingCount)
+    {
+    }
 
     void dine()
     {
@@ -79,6 +82,7 @@ public:
                 waiter_->wait();
                 left_chopstick_->pick_up();
                 right_chopstick_->pick_up();
+                eatingCount++;
                 status_ = "Eating";
             }
             else if (status_ == "Eating")
@@ -95,6 +99,7 @@ public:
             }
         }
     }
+    int getEatingCount() const { return eatingCount; }
 
     int getId() const { return id_; }
     const std::string& getStatus() const { return status_; }
@@ -107,36 +112,30 @@ private:
     Chopstick* right_chopstick_;
     Semaphore* waiter_;
     std::string status_;
+    int eatingCount;
 };
+
+#include <iomanip>
 
 void printTable(const vector<Philosopher>& philosophers)
 {
     cout << "--------------------------------------------------------------" << endl;
-    cout << "| Philosopher| Status     | Left  | Right |" << endl;
+    cout << "| Id Ph| Status     | Left  Fork | Right Fork |  Count |" << endl;
     cout << "--------------------------------------------------------------" << endl;
 
     for (const auto& philosopher : philosophers)
     {
-        cout << "| \t" << philosopher.getId() << "    |    ";
-        cout << philosopher.getStatus() << "    |  ";
-        cout << "   " << philosopher.getLeftChopstick()->getId() << "     |   ";
-        cout << "   " << philosopher.getRightChopstick()->getId() << "    |";
-
-        if (philosopher.getStatus() == "Eating")
-        {
-            cout << " (Eating: " << philosopher.getId() << ")";
-        }
-        else if (philosopher.getStatus() == "Waiting")
-        {
-            cout << " (Left: " << philosopher.getLeftChopstick()->getId() << ", Right: " << philosopher.getRightChopstick()->getId() << ")";
-        }
+        cout << "| " << setw(5) << philosopher.getId() << " | ";
+        cout << setw(10) << philosopher.getStatus() << " |";
+        cout << setw(11) << philosopher.getLeftChopstick()->getId() << " |";
+        cout << setw(12) << philosopher.getRightChopstick()->getId() << " |";
+        cout << setw(7) << philosopher.getEatingCount() << " |";
 
         cout << endl;
     }
 
     cout << "--------------------------------------------------------------" << endl;
 }
-
 
 int main()
 {
