@@ -24,7 +24,7 @@ int main()
 
     while (true)
     {
-        Utils::clearScreen();
+        // Utils::clearScreen();
         Utils::printTable(philosophers);
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }

@@ -19,8 +19,8 @@ void Philosopher::dine()
         if (status == "Thinking")
         {
             waiter->wait();
-            leftChopstick->pickUp();
-            rightChopstick->pickUp();
+            leftChopstick->pickUp(id);
+            rightChopstick->pickUp(id);
             eatingCount++;
             status = "Eating";
         }

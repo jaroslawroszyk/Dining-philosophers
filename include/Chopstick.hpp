@@ -9,7 +9,7 @@ namespace DiningPhilosophers
         Chopstick(int id);
         Chopstick();
 
-        void pickUp();
+        void pickUp(int);
 
         void putDown();
 

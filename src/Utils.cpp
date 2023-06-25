@@ -22,7 +22,7 @@ void Utils::printTable(const std::vector<Philosopher>& philosophers)
 
     for (const auto& philosopher : philosophers)
     {
-        std::cout << "| " << std::setw(5) << philosopher.getId() << " | ";
+        std::cout << "| " << std::setw(5) << philosopher.getId() << "| ";
         std::cout << std::setw(10) << philosopher.getStatus() << " |";
         std::cout << std::setw(11) << philosopher.getLeftChopstick()->getId() << "|";
         std::cout << std::setw(12) << philosopher.getRightChopstick()->getId() << "|";
