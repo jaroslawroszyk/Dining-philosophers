@@ -13,6 +13,7 @@ void DiningPhilosophers::Chopstick::pickUp()
 void DiningPhilosophers::Chopstick::putDown()
 {
     mutex.unlock();
+    id--;
 }
 
 int DiningPhilosophers::Chopstick::getId() const { return id; }

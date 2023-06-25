@@ -24,8 +24,8 @@ void Utils::printTable(const std::vector<Philosopher>& philosophers)
     {
         std::cout << "| " << std::setw(5) << philosopher.getId() << " | ";
         std::cout << std::setw(10) << philosopher.getStatus() << " |";
-        std::cout << std::setw(11) << philosopher.getLeftChopstick()->getId() << " |";
-        std::cout << std::setw(12) << philosopher.getRightChopstick()->getId() << " |";
+        std::cout << std::setw(11) << philosopher.getLeftChopstick()->getId() << "|";
+        std::cout << std::setw(12) << philosopher.getRightChopstick()->getId() << "|";
         std::cout << std::setw(7) << philosopher.getEatingCount() << " |";
 
         std::cout << std::endl;

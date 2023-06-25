@@ -7,7 +7,7 @@
 
 int main()
 {
-    std::vector<Philosopher> philosophers;
+    std::vector<Philosopher> philosophers{};
     DiningPhilosophers::Semaphore waiter(Utils::NUM_OF_PHILOSOPHERS - 1);
 
     std::vector<DiningPhilosophers::Chopstick> chopsticks(Utils::NUM_OF_PHILOSOPHERS);
@@ -16,7 +16,7 @@ int main()
         philosophers.emplace_back(i, &chopsticks[i], &chopsticks[(i + 1) % Utils::NUM_OF_PHILOSOPHERS], &waiter);
     }
 
-    std::vector<std::thread> threads;
+    std::vector<std::thread> threads{};
     for (int i = 0; i < Utils::NUM_OF_PHILOSOPHERS; i++)
     {
         threads.emplace_back(&Philosopher::dine, &philosophers[i]);
